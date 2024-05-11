@@ -1,0 +1,12 @@
+.bg-home {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/src/assets/imgs/home-img.jpg");
+  min-height: 780px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
