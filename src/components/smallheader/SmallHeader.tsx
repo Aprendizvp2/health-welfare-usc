@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AppBar, IconButton } from "@mui/material";
-import logo from "../../assets/imgs/logo-health-welfare.png";
+import logo from "../../assets/logo/logo-health-welfare.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuDrawer from "../menudrawer/MenuDrawer";
 

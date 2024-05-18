@@ -1,6 +1,6 @@
 import { Drawer, IconButton, Paper } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import logo from "../../assets/imgs/logo-health-welfare.png";
+import logo from "../../assets/logo/logo-health-welfare.png";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 interface MenuDrawerProps {

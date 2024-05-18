@@ -53,7 +53,7 @@ function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
           <div className="flex flex-col">
             <img
-              className="rounded-xl h-[190px] sm:h-[220px] md:h-[260px] xl-[400px] w-full"
+              className="rounded-xl h-full  w-full"
               src="https://cdn.aarp.net/content/dam/aarp/health/conditions_treatments/2020/08/1140-woman-at-computer-esp.imgcache.rev.web.1000.575.jpg"
               alt="img"
             />
@@ -63,7 +63,7 @@ function Home() {
           </div>
           <div className="flex flex-col">
             <img
-              className="rounded-xl h-[190px] sm:h-[230px] md:h-[260px] xl-[400px] w-full"
+              className="rounded-xl h-full  w-full"
               src="https://www.fenestrationawards.co.uk/wp-content/uploads/2021/11/Onsite-7-savings-scaled.jpg"
               alt="img"
             />
@@ -77,10 +77,10 @@ function Home() {
         id="medicalappoiments"
         className="flex justify-center items-center flex-col px-8 sm:px-20"
       >
-        <h1 className="pt-20 pb-8 text-2xl sm:text-3xl md:text-5xl font-bold text-center">
+        <h1 className="pt-28 pb-8 text-2xl sm:text-3xl md:text-5xl font-bold text-center">
           Solicita una cita
         </h1>
-        <div className="flex justify-center items-center flex-col space-y-4 p-6 sm:p-8 xl:p-10 border-2 border-[#1976D2] rounded-xl w- sm:w-[60%] xl:w-[35%]">
+        <div className="flex justify-center items-center flex-col space-y-4 p-6 sm:p-8 xl:p-10 border-2 border-[#1976D2] rounded-xl w- sm:w-[60%] xl:w-[40%]">
           <div className="w-full">
             <TextField placeholder="Nombres y apellidos" fullWidth />
           </div>

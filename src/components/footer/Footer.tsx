@@ -1,4 +1,4 @@
-import logo from "../../assets/imgs/logo-health-welfare.png";
+import logo from "../../assets/logo/logo-health-welfare.png";
 
 function Footer() {
   return (
@@ -37,9 +37,9 @@ function Footer() {
             </a>
           </div>
         </div>
-        <div className="flex justify-center md:justify-end px-8 md:px-20 py-8 md:py-2">
+        <div className="flex justify-center md:justify-end px-8 md:px-20 py-8">
           <a href="/home">
-            <img className="w-28" src={logo} alt="logo" />
+            <img className="w-16" src={logo} alt="logo" />
           </a>
         </div>
       </div>
