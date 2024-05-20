@@ -1,5 +1,6 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import { getAuth } from "firebase/auth";
 import "firebase/compat/database";
 
 const firebaseConfig = {
@@ -12,4 +13,5 @@ const firebaseConfig = {
 };
 
 const appFirebase = firebase.initializeApp(firebaseConfig);
+export const database = getAuth(appFirebase);
 export default appFirebase;

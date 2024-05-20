@@ -1,9 +1,18 @@
 import { AppBar, IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import logo from "../../assets/logo/logo-health-welfare.png";
+import { signOut } from "firebase/auth";
+import { database } from "../../firebaseConfig";
 
 function Header() {
+  const navigate = useNavigate();
+  const onClickSignout = () => {
+    signOut(database).then((val) => {
+      console.log("Valee", val);
+      navigate("/");
+    });
+  };
   return (
     <AppBar
       className="px-10 py-4 bg-[#0074D9] text-white"
@@ -33,7 +42,7 @@ function Header() {
           >
             Historial
           </Link>
-          <IconButton className="mx-4" href="/">
+          <IconButton onClick={onClickSignout} className="mx-4" href="/">
             <LogoutIcon sx={{ color: "#ffffff" }} />
           </IconButton>
         </div>
