@@ -6,9 +6,9 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+// import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import "../../styles/styles.css";
 import { useState } from "react";
 import Footer from "../../components/footer/Footer";
@@ -81,14 +81,14 @@ function Home() {
           Solicita una cita
         </h1>
         <div className="flex justify-center items-center flex-col space-y-4 p-6 sm:p-8 xl:p-10 border-2 border-[#1976D2] rounded-xl w- sm:w-[60%] xl:w-[40%]">
-          <div className="w-full">
+          {/* <div className="w-full">
             <TextField placeholder="Nombres y apellidos" fullWidth />
           </div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <div className="w-full">
               <DatePicker className="w-full" label="Fecha de la cita" />
             </div>
-          </LocalizationProvider>
+          </LocalizationProvider> */}
           <div className="w-full">
             <FormControl fullWidth variant="outlined">
               <InputLabel id="role-label">Tipo de cita</InputLabel>
@@ -102,17 +102,17 @@ function Home() {
                   Tipo de cita
                 </MenuItem>
                 <MenuItem value="general">General</MenuItem>
-                <MenuItem value="Oftamlologia">Oftamlologia</MenuItem>
-                <MenuItem value="Odontología">Odontología</MenuItem>
+                <MenuItem value="oftalmologia">Oftalmología</MenuItem>
+                <MenuItem value="odontologica">Odontología</MenuItem>
               </Select>
             </FormControl>
           </div>
           <div className="w-full">
             <TextField placeholder="Descripción" multiline rows={4} fullWidth />
           </div>
-          <button className="bg-[#1976D2] text-white hover:text-[#1976D2] hover:bg-transparent border-2 border-[#1976D2] hover:border-[#1976D2] px-10 py-2 normal-case rounded-lg text-2xl uppercase transition duration-300">
+          <a href={`/citas/${form.role}`} className="bg-[#1976D2] text-white hover:text-[#1976D2] hover:bg-transparent border-2 border-[#1976D2] hover:border-[#1976D2] px-10 py-2 normal-case rounded-lg text-2xl uppercase transition duration-300">
             Enviar
-          </button>
+          </a>
         </div>
       </div>
       <Footer />
