@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Hidden, TextField, IconButton } from "@mui/material";
+import { Button, Hidden, TextField, IconButton, MenuItem, FormControl, InputLabel, Select } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import firebase from "../../firebaseConfig";
@@ -8,6 +8,7 @@ import logoBlue from "../../assets/logo/logo-health-welfare-blue.png";
 import { useNavigate } from "react-router-dom";
 import { ErrorIcon, SuccessCheckIcon } from "../../assets/svg";
 import Alert from "../../components/alert/Alert";
+import axios from "axios";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -15,16 +16,21 @@ export default function SignUp() {
   const [openErrorAlert, setOpenErrorAlert] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
-    name: "",
+    nombre: "",
+    numeroDocumento: "",
+    genero: "",
+    telefono: "",
     email: "",
-    role: "",
-    idNumber: "",
-    password: "",
+    clave: "",
   });
 
   const handleInputChange = (e: any, fieldName: any) => {
     const value = e.target.value;
     setForm({ ...form, [fieldName]: value });
+  };
+
+  const handleGeneroChange = (event: any) => {
+    setForm({ ...form, genero: event.target.value as string });
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -47,25 +53,34 @@ export default function SignUp() {
     navigate("/");
   };
 
+  const agregarPaciente = (paciente: any) => {
+    axios.post("http://localhost:8080/pacientes/agregar", paciente)
+    .then(() => console.log('paciente registrado'))
+    .catch((err) => console.log('paciente no registrado', err))
+
+  }
+
   const onClickSignUp = async (e: any) => {
     e.preventDefault();
     try {
       const user = await firebase
         .auth()
-        .createUserWithEmailAndPassword(form.email, form.password);
+        .createUserWithEmailAndPassword(form.email, form.clave);
       if (user) {
         handleClickOpenSuccesAlert();
+        agregarPaciente(form);
       }
     } catch (error) {
       handleClickOpenErrorAlert();
     }
+   
   };
 
   return (
     <div>
       <div className="flex flex-col sm:flex-row">
         <Hidden mdDown>
-          <div className="w-full md:w-1/2 pt-28">
+          <div className="w-full md:w-1/2 pt-10">
             <div className="flex flex-col justify-center items-center w-full">
               <h1 className="text-black text-5xl text-center font-bold px-20">
                 Registro
@@ -74,17 +89,41 @@ export default function SignUp() {
                 <TextField
                   sx={{ marginBottom: 4 }}
                   variant="outlined"
-                  value={form.name}
-                  onChange={(e) => handleInputChange(e, "name")}
+                  value={form.nombre}
+                  onChange={(e) => handleInputChange(e, "nombre")}
                   placeholder="Nombres y apellidos"
                   fullWidth
                 />
                 <TextField
                   sx={{ marginBottom: 4 }}
                   variant="outlined"
-                  value={form.idNumber}
-                  onChange={(e) => handleInputChange(e, "idNumber")}
+                  value={form.numeroDocumento}
+                  onChange={(e) => handleInputChange(e, "numeroDocumento")}
                   placeholder="No de Documento"
+                  fullWidth
+                />
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel id="genero-label">Género</InputLabel>
+                  <Select
+                    sx={{ marginBottom: 4 }}
+                    labelId="genero-label"
+                    value={form.genero}
+                    onChange={handleGeneroChange}
+                    label="Género"
+                  >
+                    <MenuItem value="" disabled>
+                      Género
+                    </MenuItem>
+                    <MenuItem value="masculino">Masculino</MenuItem>
+                    <MenuItem value="femenino">Femenino</MenuItem>
+                  </Select>
+                </FormControl>
+                <TextField
+                  sx={{ marginBottom: 4 }}
+                  variant="outlined"
+                  value={form.telefono}
+                  onChange={(e) => handleInputChange(e, "telefono")}
+                  placeholder="Teléfono"
                   fullWidth
                 />
                 <TextField
@@ -98,8 +137,8 @@ export default function SignUp() {
                 <TextField
                   sx={{ marginBottom: 4 }}
                   variant="outlined"
-                  value={form.password}
-                  onChange={(e) => handleInputChange(e, "password")}
+                  value={form.clave}
+                  onChange={(e) => handleInputChange(e, "clave")}
                   placeholder="Contraseña"
                   type={showPassword ? "text" : "password"}
                   InputProps={{
@@ -152,17 +191,41 @@ export default function SignUp() {
                 <TextField
                   sx={{ marginBottom: 4 }}
                   variant="outlined"
-                  value={form.name}
-                  onChange={(e) => handleInputChange(e, "name")}
+                  value={form.nombre}
+                  onChange={(e) => handleInputChange(e, "nombre")}
                   placeholder="Nombres y apellidos"
                   fullWidth
                 />
                 <TextField
                   sx={{ marginBottom: 4 }}
                   variant="outlined"
-                  value={form.idNumber}
-                  onChange={(e) => handleInputChange(e, "idNumber")}
+                  value={form.numeroDocumento}
+                  onChange={(e) => handleInputChange(e, "numeroDocumento")}
                   placeholder="No de Documento"
+                  fullWidth
+                />
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel id="genero-label">Género</InputLabel>
+                  <Select
+                    sx={{ marginBottom: 4 }}
+                    labelId="genero-label"
+                    value={form.genero}
+                    onChange={handleGeneroChange}
+                    label="Género"
+                  >
+                    <MenuItem value="" disabled>
+                      Género
+                    </MenuItem>
+                    <MenuItem value="masculino">Masculino</MenuItem>
+                    <MenuItem value="femenino">Femenino</MenuItem>
+                  </Select>
+                </FormControl>
+                <TextField
+                  sx={{ marginBottom: 4 }}
+                  variant="outlined"
+                  value={form.telefono}
+                  onChange={(e) => handleInputChange(e, "telefono")}
+                  placeholder="Teléfono"
                   fullWidth
                 />
                 <TextField
@@ -176,8 +239,8 @@ export default function SignUp() {
                 <TextField
                   sx={{ marginBottom: 4 }}
                   variant="outlined"
-                  value={form.password}
-                  onChange={(e) => handleInputChange(e, "password")}
+                  value={form.clave}
+                  onChange={(e) => handleInputChange(e, "clave")}
                   placeholder="Contraseña"
                   type={showPassword ? "text" : "password"}
                   InputProps={{

@@ -57,6 +57,7 @@ export default function Login() {
         .signInWithEmailAndPassword(form.email, form.password);
       if (user) {
         handleClickOpenSuccesAlert();
+        sessionStorage.setItem('email', form.email);
       }
     } catch (error) {
       handleClickOpenErrorAlert();
