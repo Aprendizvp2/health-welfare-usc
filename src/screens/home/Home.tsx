@@ -4,7 +4,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  TextField,
 } from "@mui/material";
 // import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 // import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -103,12 +102,9 @@ function Home() {
                 </MenuItem>
                 <MenuItem value="general">General</MenuItem>
                 <MenuItem value="oftalmologia">Oftalmología</MenuItem>
-                <MenuItem value="odontologica">Odontología</MenuItem>
+                <MenuItem value="odontologia">Odontología</MenuItem>
               </Select>
             </FormControl>
-          </div>
-          <div className="w-full">
-            <TextField placeholder="Descripción" multiline rows={4} fullWidth />
           </div>
           <a href={`/citas/${form.role}`} className="bg-[#1976D2] text-white hover:text-[#1976D2] hover:bg-transparent border-2 border-[#1976D2] hover:border-[#1976D2] px-10 py-2 normal-case rounded-lg text-2xl uppercase transition duration-300">
             Enviar
