@@ -7,7 +7,14 @@ import logoBlue from "../../assets/logo/logo-health-welfare-blue.png";
 import logo from "../../assets/logo/logo-health-welfare.png";
 import { useNavigate } from "react-router-dom";
 import Alert from "../../components/alert/Alert";
-import { ErrorIcon, SuccessCheckIcon } from "../../assets/svg";
+import {
+  ErrorIcon,
+  FacebookIcon,
+  GoogleIcon,
+  SuccessCheckIcon,
+} from "../../assets/svg";
+import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import "firebase/firestore";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -19,6 +26,8 @@ export default function Login() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const googleProvider = new GoogleAuthProvider();
+  const fbProvider = new FacebookAuthProvider();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -57,7 +66,28 @@ export default function Login() {
         .signInWithEmailAndPassword(form.email, form.password);
       if (user) {
         handleClickOpenSuccesAlert();
-        sessionStorage.setItem('email', form.email);
+      }
+    } catch (error) {
+      handleClickOpenErrorAlert();
+    }
+  };
+
+  const onClickSignInWithGoogle = async () => {
+    try {
+      const result = await firebase.auth().signInWithPopup(googleProvider);
+      if (result) {
+        handleClickOpenSuccesAlert();
+      }
+    } catch (error) {
+      handleClickOpenErrorAlert();
+    }
+  };
+
+  const onClickSignInWithFacebook = async () => {
+    try {
+      const result = await firebase.auth().signInWithPopup(fbProvider);
+      if (result) {
+        handleClickOpenSuccesAlert();
       }
     } catch (error) {
       handleClickOpenErrorAlert();
@@ -68,7 +98,7 @@ export default function Login() {
     <div>
       <div className="flex flex-col sm:flex-row">
         <Hidden mdDown>
-          <div className="w-full md:w-1/2 pt-52">
+          <div className="w-full md:w-1/2 pt-32">
             <div className="flex flex-col justify-center items-center w-ful">
               <h1 className="text-black text-5xl text-center font-bold px-20">
                 Iniciar sesión
@@ -111,7 +141,7 @@ export default function Login() {
                   fullWidth
                 />
                 <Button
-                  className="bg-[#0074D9] hover:bg-white hover:text-[#0074D9] px-10 py-2 rounded-lg text-xl text-white normal-case"
+                  className="bg-[#0074D9] w-full hover:bg-white hover:text-[#0074D9] px-10 py-2 rounded-lg text-xl text-white normal-case"
                   variant="outlined"
                   onClick={onClickSignIn}
                 >
@@ -123,6 +153,19 @@ export default function Login() {
                     Registrarse
                   </a>
                 </h1>
+                <div className="border-t-[1px] border-[#0000003b] w-full my-8" />
+                <button
+                  className="border-[1px] border-[#0000003b] w-full py-4 flex justify-start gap-4 px-4 rounded-lg"
+                  onClick={onClickSignInWithGoogle}
+                >
+                  <GoogleIcon /> Continua con Google
+                </button>
+                <button
+                  className="bg-[#3b5998] w-full py-4 flex justify-start gap-4 px-4 rounded-lg mt-4 text-white"
+                  onClick={onClickSignInWithFacebook}
+                >
+                  <FacebookIcon /> Continua con Facebook
+                </button>
               </div>
             </div>
           </div>
@@ -178,9 +221,9 @@ export default function Login() {
                   fullWidth
                 />
                 <Button
-                  className="bg-[#0074D9] hover:bg-white hover:text-[#0074D9] py-2 rounded-lg text-xl text-white normal-case sm:w-1/2  w-full"
+                  className="bg-[#0074D9] w-full hover:bg-white hover:text-[#0074D9] py-2 rounded-lg text-xl text-white normal-case sm:w-1/2  w-full"
                   variant="outlined"
-                  href="/home"
+                  onClick={onClickSignIn}
                 >
                   Ingresar
                 </Button>
