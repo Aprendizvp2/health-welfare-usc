@@ -12,6 +12,7 @@ export default function MenuDrawer({
   open,
   toggleMenuDrawer,
 }: MenuDrawerProps) {
+  const id = sessionStorage.getItem("id"); 
   return (
     <Drawer anchor="right" open={open} onClick={toggleMenuDrawer}>
       <Paper
@@ -55,9 +56,9 @@ export default function MenuDrawer({
               fontSize: 20,
               fontWeight: "bold",
             }}
-            href="/products"
+            href={`/profile/${id}`}
           >
-            Productos
+            Perfil
           </a>
           <a
             style={{
@@ -66,10 +67,11 @@ export default function MenuDrawer({
               fontSize: 20,
               fontWeight: "bold",
             }}
-            href="/profile"
+            href={`/history/${id}`}
           >
-            Perfil
+            Mis citas
           </a>
+          
           <IconButton className="mx-4" href="/">
             <LogoutIcon sx={{ color: "black" }} />
           </IconButton>
