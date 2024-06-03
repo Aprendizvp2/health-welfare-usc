@@ -13,9 +13,9 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/citas/:tipoCita" element={<Citas />} />
+        <Route path="/history/:id" element={<History />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/citas/:tipoCita/:id" element={<Citas />} />
       </Routes>
     </div>
   );

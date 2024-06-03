@@ -6,6 +6,7 @@ import { signOut } from "firebase/auth";
 import { database } from "../../firebaseConfig";
 
 function Header() {
+  const id = sessionStorage.getItem("id");  
   const navigate = useNavigate();
   const onClickSignout = () => {
     signOut(database).then((val) => {
@@ -32,15 +33,15 @@ function Header() {
           </Link>
           <Link
             className="text-white hover:text-[#0074D9] hover:bg-white px-4 py-2 mx-2 rounded text-lg font-semibold transition duration-300 ease-in-out"
-            to="/profile"
+            to={`/profile/${id}`}
           >
             Perfil
           </Link>
           <Link
             className="text-white hover:text-[#0074D9] hover:bg-white px-4 py-2 mx-2 rounded text-lg font-semibold transition duration-300 ease-in-out"
-            to="/history"
+            to={`/history/${id}`}
           >
-            Historial
+            Mis citas
           </Link>
           <IconButton onClick={onClickSignout} className="mx-4" href="/">
             <LogoutIcon sx={{ color: "#ffffff" }} />
